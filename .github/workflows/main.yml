@@ -1,0 +1,17 @@
+name: GH Actions Playground (with rust!!)
+on: 
+  push: 
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Say hello
+        run: echo hello from GH Actions
+
+      - name: See if Rust build tools are present
+        run: |
+          echo cargo version:
+          cargo --version
+      
