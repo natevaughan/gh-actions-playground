@@ -14,4 +14,12 @@ jobs:
         run: |
           echo cargo version:
           cargo --version
+
+      - name: Build Rust tool
+        run: cargo build --release
+
+      - name: Take a lap to see what is real
+        run: ls target/release
       
+      - name: Run this town
+        run: ./target/release/gh-actions-playground
