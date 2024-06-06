@@ -13,7 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build Rust tool
+      - name: Install Wasm
+        run: rustup target add wasm32-unknown-unknown
+
+      - name: Build Rust worker
         run: cargo build --release --target=wasm32-unknown-unknown
 
       - name: Notify failure
