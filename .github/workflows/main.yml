@@ -23,4 +23,4 @@ jobs:
         run: env
 
       - name: Run this town
-        run: ./target/release/gh-actions-playground --myvar=$VAR_1 --secret=${{secrets.SECRET_1}}
+        run: ./target/release/gh-actions-playground --myvar=$VAR_1 --secret=${{secrets.SECRET_2}}
