@@ -2,6 +2,10 @@ name: GH Actions Playground (with rust!!)
 on:
   push:
     branches: [main]
+
+env:
+  VAR_1: ${{ vars.VAR_1 }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
