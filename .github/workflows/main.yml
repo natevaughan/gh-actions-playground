@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  VAR_1: ${{ vars.prod.VAR_1 }}
+  MY_ENV_VAR: 123abc
 
 jobs:
   build:
@@ -24,4 +24,4 @@ jobs:
         run: env
 
       - name: Run this town
-        run: ./target/release/gh-actions-playground --myvar=${{ env.VAR_1 }} --secret=${{secrets.SECRET_2}}
+        run: ./target/release/gh-actions-playground --myvar=${{ vars.VAR_1 }} --secret=${{secrets.SECRET_2}}
