@@ -23,9 +23,6 @@ jobs:
       - name: Take a lap to see what is real
         run: env
 
-      - name: Run this town
-        run: ./target/release/gh-actions-playground --myvar=${{ vars.VAR_1 }} --secret=${{secrets.SECRET_2}}
-
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
