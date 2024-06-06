@@ -1,11 +1,11 @@
 name: GH Actions Playground (with rust!!)
-on: 
-  push: 
-    branches: [ main ]
+on:
+  push:
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - uses: actions/checkout@v2
       - name: Say hello
         run: echo hello from GH Actions
@@ -18,8 +18,12 @@ jobs:
       - name: Build Rust tool
         run: cargo build --release
 
+      - name: My backup step
+        if: ${{ failure() }}
+        run: echo build failed !!!!
+
       - name: Take a lap to see what is real
         run: ls target/release
-      
+
       - name: Run this town
         run: ./target/release/gh-actions-playground
