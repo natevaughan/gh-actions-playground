@@ -23,7 +23,7 @@ jobs:
         run: echo build failed !!!!
 
       - name: Take a lap to see what is real
-        run: ls target/release
+        run: env
 
       - name: Run this town
-        run: ./target/release/gh-actions-playground
+        run: ./target/release/gh-actions-playground --myvar=$VAR_1
