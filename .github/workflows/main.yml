@@ -16,7 +16,7 @@ jobs:
       - name: Build Rust tool
         run: cargo build --release
 
-      - name: My backup step
+      - name: Notify failure
         if: ${{ failure() }}
         run: echo build failed !!!!
 
@@ -25,3 +25,10 @@ jobs:
 
       - name: Run this town
         run: ./target/release/gh-actions-playground --myvar=${{ vars.VAR_1 }} --secret=${{secrets.SECRET_2}}
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy target --project-name=gh-actions-playground

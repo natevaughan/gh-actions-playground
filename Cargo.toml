@@ -1,9 +1,19 @@
 [package]
 name = "gh-actions-playground"
 version = "0.1.0"
+authors = ["Nate Vaughan"]
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-clap = { version = "4.5.4", features = ["derive"] }
+cfg-if = "1.0.0"
+console_error_panic_hook = "0.1.7"
+serde = "1.0.203"
+serde_json = "1.0.117"
+worker = "0.3.0"
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
