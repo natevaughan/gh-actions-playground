@@ -20,9 +20,11 @@ jobs:
           yarn
 
       - name: Install Wasm
+        if: false
         run: rustup target add wasm32-unknown-unknown
 
       - name: Build Rust worker
+        if: false
         run: cargo build --release --target=wasm32-unknown-unknown
 
       - name: Notify failure
@@ -41,12 +43,13 @@ jobs:
         run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }}
 
       - name: neonbranch
-        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME
+        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME >> "$GITHUB_OUTPUT"
 
       - name: Check neon branch
         run: echo ${{ steps.neonbranch.outputs }}
 
       - name: Deploy
+        if: false
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
