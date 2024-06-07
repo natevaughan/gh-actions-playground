@@ -37,10 +37,10 @@ jobs:
         run: echo $BRANCH_NAME
 
       - name: Authenticate neon
-        run: bunx neonctl auth --api-key ${{ secrets.NEON_API_KEY }}
+        run: npx neonctl auth --api-key ${{ secrets.NEON_API_KEY }}
 
       - name: Check if neon branches exist
-        run: bunx neonctl branches list
+        run: npx neonctl branches list
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
