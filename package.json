@@ -1,0 +1,7 @@
+{
+  "name": "gh-actions-playground",
+  "packageManager": "yarn@4.2.2",
+  "devDependencies": {
+    "neonctl": "^1.29.5"
+  }
+}

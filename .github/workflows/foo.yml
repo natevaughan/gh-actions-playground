@@ -13,6 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Enable corepack and install dependencies
+        run: |
+          corepack enable
+          yarn
+
       - name: Install Wasm
         run: rustup target add wasm32-unknown-unknown
 
@@ -23,8 +28,19 @@ jobs:
         if: ${{ failure() }}
         run: echo build failed !!!!
 
-      - name: Take a lap to see what is real
-        run: env
+      - name: Install yarn
+        run: |
+          corepack enable
+          yarn
+
+      - name: Check branch name env var
+        run: echo $BRANCH_NAME
+
+      - name: Authenticate neon
+        run: bunx neonctl auth --api-key ${{ secrets.NEON_API_KEY }}
+
+      - name: Check if neon branches exist
+        run: bunx neonctl branches list
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
