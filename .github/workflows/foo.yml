@@ -38,7 +38,7 @@ jobs:
         run: echo $BRANCH_NAME
 
       - name: Check if neon branches exist
-        run: npx neonctl branches list
+        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }}
 
       - name: Check if a neon branch matches the current branch
         run: npx neonctl branches list | grep $BRANCH_NAME
