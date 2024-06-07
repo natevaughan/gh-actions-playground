@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
 
 env:
-  MY_ENV_VAR: 123abc
+  NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   build:
@@ -36,11 +37,11 @@ jobs:
       - name: Check branch name env var
         run: echo $BRANCH_NAME
 
-      - name: Authenticate neon
-        run: npx neonctl auth --api-key ${{ secrets.NEON_API_KEY }}
-
       - name: Check if neon branches exist
         run: npx neonctl branches list
+
+      - name: Check if a neon branch matches the current branch
+        run: npx neonctl branches list | grep $BRANCH_NAME
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
