@@ -31,11 +31,6 @@ jobs:
         if: ${{ failure() }}
         run: echo build failed !!!!
 
-      - name: Install yarn
-        run: |
-          corepack enable
-          yarn
-
       - name: Check branch name env var
         run: echo $BRANCH_NAME
 
@@ -43,7 +38,7 @@ jobs:
         run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }}
 
       - name: neonbranch
-        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME >> "$GITHUB_OUTPUT"
+        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME | awk '{print $4}' >> "$GITHUB_OUTPUT"
 
       - name: Check neon branch
         run: echo ${{ steps.neonbranch.outputs }}
