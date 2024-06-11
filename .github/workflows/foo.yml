@@ -43,7 +43,7 @@ jobs:
 
       - name: neonbranch
         id: neon-branch
-        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME | awk '{print $4}'}
+        run: echo "NEON_BRANCH=$(npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME | awk '{print $4}')" >> "$GITHUB_OUTPUT"
 
       - name: Check github outputs
         run: |
