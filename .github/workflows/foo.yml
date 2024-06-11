@@ -38,10 +38,11 @@ jobs:
         run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }}
 
       - name: neonbranch
-        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME | awk '{print $4}' >> "$GITHUB_OUTPUT"
+        id: neon-branch
+        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME | awk '{print $4}'
 
       - name: Check neon branch
-        run: echo ${{ steps.neonbranch.outputs }}
+        run: echo ${{ steps.neon-branch.outputs }}
 
       - name: Deploy
         if: false
