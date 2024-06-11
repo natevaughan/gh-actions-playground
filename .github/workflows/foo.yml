@@ -39,7 +39,7 @@ jobs:
 
       - name: Echo What up
         id: what-up
-        run: echo "message=What up" >> $GITHUB_OUTPUT
+        run: echo "message=What up" >> "$GITHUB_OUTPUT""
 
       - name: neonbranch
         id: neon-branch
