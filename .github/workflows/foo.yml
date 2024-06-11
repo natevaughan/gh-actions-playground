@@ -37,12 +37,18 @@ jobs:
       - name: Check if neon branches exist
         run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }}
 
+      - name: Echo What up
+        id: what-up
+        run: echo "What up" >> $GITHUB_OUTPUT
+
       - name: neonbranch
         id: neon-branch
-        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME | awk '{print $4}' >> $GITHUB_OUTPUT
+        run: npx neonctl branches list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep $BRANCH_NAME | awk '{print $4}'
 
-      - name: Check neon branch
-        run: echo ${{ steps.neon-branch.output.value }}
+      - name: Check github outputs
+        run: |
+          echo "What up output:"
+          echo ${{ steps.what-up.output.value }}
 
       - name: Deploy
         if: false
