@@ -39,7 +39,7 @@ jobs:
 
       - name: Echo What up
         id: what-up
-        run: echo "What up" >> $GITHUB_OUTPUT
+        run: echo "message=What up" >> $GITHUB_OUTPUT
 
       - name: neonbranch
         id: neon-branch
@@ -48,7 +48,7 @@ jobs:
       - name: Check github outputs
         run: |
           echo "What up output:"
-          echo ${{ steps.what-up.output.value }}
+          echo ${{ steps.what-up.outputs.message }}
 
       - name: Deploy
         if: false
